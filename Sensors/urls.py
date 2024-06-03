@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (SensorListView, SensorDetailView,SensorUpdateView, SensorActiveListView,
                     SensorInActiveListView,SensorInMaintenanceListView, SensorDataView, SensorDataUpdateView,
-                    SensorAlertView)
+                    SensorAlertView, SensortAlertListView, SensorAlertUpdateView)
 
 urlpatterns = [
     path('', SensorListView.as_view(), name = "sensor-list"), #staff group needed
@@ -15,5 +15,7 @@ urlpatterns = [
     path('data/update/<int:pk>/', SensorDataUpdateView.as_view(), name = 'sensor-data-update'),
     #alerts
     path('alert/<int:pk>/', SensorAlertView.as_view(), name = "sensor-alert-view"),
+    path('alert/update/<int:pk>/', SensorAlertUpdateView.as_view(), name = "sensor-alert-view"),
+    path('alerts/', SensortAlertListView.as_view(), name="sensor-alerts-list"),
 
 ]

@@ -46,10 +46,21 @@ class SensorDataView(generics.RetrieveAPIView):
     queryset = Data.objects.all()
     serializer_class = DataSerializer
 class SensorDataUpdateView(generics.UpdateAPIView):
-    queryset = Data.objects.all()
     serializer_class = DataSerializer
+    def get_queryset(self):
+        return Data.objects.filter(sensor=self.kwargs['pk'])
     permission_classes = [permissions.IsAuthenticated and IsAdmin]
-class SensorAlertView(generics.RetrieveAPIView):
-    queryset = Alert.objects.all()
+class SensorAlertView(generics.ListAPIView):
     serializer_class =  AlertSerializer
+    permission_classes = [permissions.IsAuthenticated and IsStaff]
+    def get_queryset(self):
+        return Alert.objects.filter(sensor=self.kwargs['pk'])
+
+class SensorAlertUpdateView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Alert.objects.all()
+    serializer_class = AlertSerializer
+    permission_classes = [permissions.IsAuthenticated and IsStaff]
+class SensortAlertListView(generics.ListAPIView):
+    queryset = Alert.objects.all()
+    serializer_class = AlertSerializer
     permission_classes = [permissions.IsAuthenticated and IsStaff]

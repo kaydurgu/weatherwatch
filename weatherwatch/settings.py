@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'user',
     'Sensors',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [

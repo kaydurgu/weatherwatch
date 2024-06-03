@@ -42,7 +42,7 @@ class Data(models.Model):
     wind_speed = models.FloatField(null=True, blank=True)
     wind_direction = models.CharField(max_length=250, blank=True, null = True)
     def __str__(self):
-        return f"Data for {self.sensor.name} at {self.timestamp}"
+        return f"Data for {self.sensor.name}"
 
 class Alert(models.Model):
 
